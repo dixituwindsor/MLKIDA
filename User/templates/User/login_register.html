@@ -1,0 +1,72 @@
+{% extends './base.html' %}
+{% load static %}
+{% block header %}
+{% endblock %}
+
+{% block body_block %}
+
+    {% if page == 'login' %}
+
+    <div class="log_reg">
+    <div class="container">
+        <img src="{% static 'logo3_green.png' %}" alt="Logo" style="width: 75%; "/>
+        <h2>Login</h2>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username"/>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password"/>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <div class="switch-page">
+            <p>Don't have an account? <a href="{% url 'createUser' %}">Register</a></p>
+        </div>
+    </div>
+    </div>
+    {% else %}
+    <div class="log_reg">
+    <div class="container">
+        <img src="{% static 'logo3_green.png' %}" alt="Logo" style="width: 60%; "/>
+        <h2>Register User</h2>
+        <form method="POST" action="{% url 'createUser' %}" >
+            {% csrf_token %}
+
+            {% for field in form %}
+            <div class="form__field">
+                <label for="formInput#text">{{field.label}}</label>
+
+                : <br/>{{field}}
+
+                <!-- {% if field.help_text %}
+                <small>{{field.help_text}}</small>
+                {% endif %} -->
+
+                {% for error in field.errors %}
+                <p style="color: red;">{{error}}</p>
+                {% endfor %}
+
+            </div>
+
+            {% endfor %}
+
+
+                <button type="submit">Sign In</button>
+
+        </form>
+
+        <div class="switch-page">
+            <p>Already have an account? <a href="{% url 'loginUser' %}">Login</a></p>
+        </div>
+    </div>
+</div>
+
+
+    {% endif %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

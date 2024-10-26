@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Growliv </title>
+    <link rel="stylesheet" type="text/css" href="../../../static/User/style.css">
+</head>
+<body>
+
+    {% block header %}
+{#    <header>#}
+{#        <img src="{% static 'logo4.png' %}" alt="Logo">#}
+{#        <div>#}
+{#            <a >Admin</a>#}
+{#            <a href="{% url 'logoutUser' %}">Logout</a>#}
+{#        </div>#}
+{#    </header>#}
+        <header>
+            <div class="navbar-container">
+                <a href="{% url 'homepage' %}" class="logo" > GrowLiv Biologicals </a>
+{#                <img src="{% static 'logo4.png' %}" alt="Logo" class="logo">#}
+                <nav class="navbar-links">
+                    <a href="#" class="navbar-link"><img src="{% static 'setting.png' %}" alt="" class="navimg"/> </a>
+                    <a href="{% url 'logoutUser' %}" class="navbar-link"><img src="{% static 'logout.png' %}" alt="" class="navimg"/></a>
+                </nav>
+            </div>
+        </header>
+
+    {% endblock %}
+
+    {% block body_block %}
+        <p>*****</p>
+    {% endblock %}
+
+    {% block footer %}
+    <footer>
+        <p>&copy; 2024 Growliv. All rights reserved.</p>
+    </footer>
+    {% endblock %}
+</body>
+</html>

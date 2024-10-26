@@ -1,0 +1,28 @@
+{% extends './base.html' %}
+{% block body_block %}
+    <h2>Video Upload History for {{ username }}</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Upload Date</th>
+                <th>Predatory</th>
+                <th>Feeder</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for video in video_upload_history %}
+                <tr>
+                    <td>{{ video.title }}</td>
+                    <td>{{ video.upload_date }}</td>
+                    <td>{{ video.predatory_mites }}</td>
+                    <td>{{ video.feeder_mites }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="3">No video upload history found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

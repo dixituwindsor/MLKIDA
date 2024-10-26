@@ -1,0 +1,11 @@
+{% extends './base.html' %}
+{% block body_block %}
+    {% for user in users %}
+        <h2>{{ user.username }}</h2>
+        <ul>
+            <li><a href="{% url 'user_profile' user.id %}">View Profile</a></li>
+            <li><a href="{% url 'user_login_history' user.username %}">View Login History</a></li>
+            <li><a href="{% url 'user_video_upload_history' user.username %}">View Video Upload History</a></li>
+        </ul>
+    {% endfor %}
+{% endblock %}

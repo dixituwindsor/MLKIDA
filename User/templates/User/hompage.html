@@ -1,0 +1,88 @@
+{% extends './base.html' %}
+{%  load static %}
+{% block body_block %}
+    <div class="main-content">
+
+    <div class="upload-container_bg" style=" background-image: url('{% static 'bg_kida4.jpg' %}') ;">
+
+        <div class="upload-container">
+            <h2>Upload Video</h2>
+            <form method="post" enctype="multipart/form-data" action="{% url 'upload_video' %}">
+                {% csrf_token %}
+                <div class="upload-btn-wrapper">
+                    <button class="button" style="background-color: darkgreen">Choose a file</button>
+                    <input type="file" name="video" id="video" accept="video/*" />
+                </div>
+                <input type="submit" value="Upload">
+            </form>
+            <!-- Display results here after video upload -->
+            {% if video_path %}
+            <div class="result-container">
+                <video width="320" height="240" controls>
+                    <source src="{{ video_path }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+        <div class="previous-videos-container_bg">
+
+            <div class="previous-videos-container">
+                <h2>Previous Videos</h2>
+                <!-- Display list of previous videos with timestamps -->
+                <div class="video-item">
+{#                    <video width="320" height="240" controls>#}
+{#                        <source src="{% static 'previous_video.mp4' %}" type="video/mp4">#}
+{#                        Your browser does not support the video tag.#}
+{#                    </video>#}
+{#                    <p>Uploaded on: <span>Timestamp</span></p>#}
+
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Video Name</th>
+                          <th>Timestamp</th>
+                          <th>Predatory mites count</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td data-label="Video Name">Video1</td>
+                          <td data-label="Timestamp">14 March 2024 7:35</td>
+                          <td data-label="Predatory mites count">25</td>
+                        </tr>
+                        <tr>
+                          <td data-label="Video Name">Video2</td>
+                          <td data-label="Timestamp">12 March 2024 17:30</td>
+                          <td data-label="Predatory mites count">30</td>
+                        </tr>
+                        <tr>
+                          <td data-label="Video Name">Video3</td>
+                          <td data-label="Timestamp">10 March 2024 12:15</td>
+                          <td data-label="Predatory mites count">20</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                </div>
+                <!-- Repeat the above block for each previous video -->
+            </div>
+
+        </div>
+    </div>
+
+{#    <script>#}
+{#        // Update navbar background on scroll#}
+{#        window.onscroll = function () {#}
+{#            var navbar = document.querySelector('header');#}
+{#            if (window.scrollY > 50) {#}
+{#                navbar.style.backgroundColor = 'rgba(52, 58, 64, 0.9)';#}
+{#            } else {#}
+{#                navbar.style.backgroundColor = 'rgba(52, 58, 64, 0.5)';#}
+{#            }#}
+{#        };#}
+{#    </script>#}
+{% endblock %}
+
+
